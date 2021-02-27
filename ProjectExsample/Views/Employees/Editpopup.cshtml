@@ -1,0 +1,61 @@
+﻿@model ProjectExsample.Models.Db.Employees
+
+@{
+    Layout = null;
+}
+
+<form asp-action="Editpopup">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="EmployeeId" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname" class="control-label"></label>
+        <input asp-for="Surname" class="form-control" />
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Birthday" class="control-label"></label>
+        <input asp-for="Birthday" class="form-control" />
+        <span asp-validation-for="Birthday" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="GenderId" class="control-label"></label>
+
+        <br />
+
+        @foreach (var item in ((SelectList)ViewBag.GenderId))
+
+        {
+
+            <input asp-for="GenderId" type="radio" value="@item.Value" /> @item.Text
+
+        }
+
+        @*<select asp-for="GenderId" class="form-control" asp-items="ViewBag.GenderId"></select>*@
+
+
+        <span asp-validation-for="GenderId" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="PositionId" class="control-label"></label>
+        <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionId"></select>
+        <span asp-validation-for="PositionId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

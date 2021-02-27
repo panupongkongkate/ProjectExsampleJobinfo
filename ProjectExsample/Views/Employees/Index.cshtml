@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ProjectExsample.Models.Db.Employees> 
+
+
+
+@{
+    var i = 0;
+}
+
+<h1>Employees</h1>
+
+<p>
+    @*<a class="btn btn-info" asp-action="Create">Add</a>*@
+
+    <a onclick="showInPopup('@Url.Action("AddEmployees","Employees")','Employees')"
+       class="btn btn-success text-white">Add</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("No")
+            </th>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+                        i++;
+                    }
+
+                    @i.
+                </td>
+                <td>
+                    @*<a class="btn btn-info" asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a>*@
+
+                    <a onclick="showInPopup('@Url.Action("Editpopup","Employees",new {id = item.EmployeeId })','Edit Employees')" class="btn btn-info text-white">Edit </a>
+
+                    @*<a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |*@
+
+                <a onclick="showInPopup('@Url.Action("Deletepopup","Employees",new {id = item.EmployeeId })','Delete Employees')" class="btn btn-danger text-white">Delete</a>
+
+                    @*<a class="btn btn-info" asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>*@
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birthday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender.GenderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position.PositionName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@section Scripts{
+
+    <script src="~/js/Popup.js"></script>
+}

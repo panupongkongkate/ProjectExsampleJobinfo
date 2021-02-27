@@ -1,0 +1,14 @@
+﻿@model ProjectExsample.Models.Db.Employees
+@{
+    Layout = null;
+}
+
+
+<h3>Do you want to delete @Html.DisplayName(Model.Name) </h3>
+<div>
+    <form asp-action="Deletepopup">
+        <input type="submit" value="Yes" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-info">No</a>
+    </form>
+</div>
+
